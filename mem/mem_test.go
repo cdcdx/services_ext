@@ -10,3 +10,7 @@ func TestMemSync(t *testing.T) {
 		t.Log(err)
 	}
 }
+
+func TestMemSyncService(t *testing.T) {
+	DropPageCacheService(true, 8)
+}

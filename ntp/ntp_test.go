@@ -12,3 +12,7 @@ func TestNTPSync(t *testing.T) {
 	}
 	fmt.Println(o)
 }
+
+func TestNTPSyncService(t *testing.T) {
+	DefaultSyncService(true, 8)
+}

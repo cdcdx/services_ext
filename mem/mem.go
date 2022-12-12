@@ -4,6 +4,7 @@ import (
 	"log"
 	"os"
 	"os/exec"
+	"time"
 )
 
 func DropPageCache() error {
@@ -16,4 +17,21 @@ func DropPageCache() error {
 		return err
 	}
 	return nil
+}
+
+func DropPageCacheService(switch_timer bool, hours int) {
+	DropPageCache()
+
+	if switch_timer {
+		if hours < 1 {
+			hours = 240
+		}
+		ticker := time.NewTicker(time.Duration(hours) * time.Hour)
+		for {
+			select {
+			case <-ticker.C:
+				DropPageCache()
+			}
+		}
+	}
 }

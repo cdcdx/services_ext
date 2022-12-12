@@ -22,6 +22,7 @@ import (
 	"os"
 	"os/exec"
 	"strings"
+	"time"
 )
 
 var (
@@ -36,6 +37,23 @@ var (
 // DefaultSync syncs system time with NTP server.
 func DefaultSync() (string, error) {
 	return Sync(DefaultNTP, DefaultServer)
+}
+
+func DefaultSyncService(switch_timer bool, hours int) {
+	DefaultSync()
+
+	if switch_timer {
+		if hours < 1 {
+			hours = 8
+		}
+		ticker := time.NewTicker(time.Duration(hours) * time.Hour)
+		for {
+			select {
+			case <-ticker.C:
+				DefaultSync()
+			}
+		}
+	}
 }
 
 var inUseErr = "NTP socket is in use"
