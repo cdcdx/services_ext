@@ -5,6 +5,7 @@ import (
 	"os"
 
 	"github.com/cdcdx/services_ext/dingtalk"
+	"github.com/cdcdx/services_ext/mail"
 	"github.com/cdcdx/services_ext/mem"
 	"github.com/cdcdx/services_ext/ntp"
 	"github.com/cdcdx/services_ext/telegram"
@@ -34,13 +35,23 @@ func main() {
 	// send dingtalk
 	err3 := dingtalk.SendMessage("alarm - msg", true, false)
 	if err3 != nil {
-		fmt.Println(err1)
+		fmt.Println(err3)
 	}
 
 	fmt.Println("\n send telegram")
 	// send telegram
 	err4 := telegram.SendMessage("alarm - msg", true)
 	if err4 != nil {
-		fmt.Println(err1)
+		fmt.Println(err4)
 	}
+
+	fmt.Println("\n send mail")
+	// send mail
+	sendTo := make([]string, 0)
+	sendTo = append(sendTo, "cdcdx888@gmail.com")
+	err5 := mail.SendMessage(sendTo, "alarm", "msg", true)
+	if err5 != nil {
+		fmt.Println(err5)
+	}
+
 }
