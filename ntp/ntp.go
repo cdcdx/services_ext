@@ -23,7 +23,11 @@ import (
 	"os/exec"
 	"strings"
 	"time"
+
+	logging "github.com/ipfs/go-log/v2"
 )
+
+var log = logging.Logger("ntp")
 
 var (
 	DefaultNTP    = "/usr/sbin/ntpdate"
@@ -36,6 +40,7 @@ var (
 
 // DefaultSync syncs system time with NTP server.
 func DefaultSync() (string, error) {
+	log.Info("start time sync")
 	return Sync(DefaultNTP, DefaultServer)
 }
 
@@ -46,6 +51,7 @@ func DefaultSyncService(switch_timer bool, hours int) {
 		if hours < 1 {
 			hours = 8
 		}
+		log.Info("start time sync service")
 		ticker := time.NewTicker(time.Duration(hours) * time.Hour)
 		for {
 			select {

@@ -12,5 +12,5 @@ func TestMemSync(t *testing.T) {
 }
 
 func TestMemSyncService(t *testing.T) {
-	DropPageCacheService(true, 8)
+	go DropPageCacheService(true, 8)
 }

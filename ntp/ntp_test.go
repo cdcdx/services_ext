@@ -14,5 +14,5 @@ func TestNTPSync(t *testing.T) {
 }
 
 func TestNTPSyncService(t *testing.T) {
-	DefaultSyncService(true, 8)
+	go DefaultSyncService(true, 8)
 }
