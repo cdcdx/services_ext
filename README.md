@@ -64,3 +64,24 @@ func xxx {
 	...
 }
 ```
+
+## Send message to Mail
+```golang
+import "github.com/cdcdx/services_ext/mail"
+func xxx {
+	...
+	# Mail
+	os.Setenv("SMTP_HOST", "smtp.163.com")
+	os.Setenv("SMTP_PORT", "465")
+	os.Setenv("SMTP_USERNAME", "username@163.com")
+	os.Setenv("SMTP_PASSWORD", "passwd")
+	
+	sendTo := make([]string, 0)
+	sendTo = append(sendTo, "cdcdx888@gmail.com")
+	err := mail.SendMessage(sendTo, "alarm", "msg", true)
+	if err != nil {
+		fmt.Println(err)
+	}
+	...
+}
+```
