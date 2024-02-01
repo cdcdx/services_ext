@@ -6,6 +6,8 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
+
+	"golang.org/x/xerrors"
 )
 
 type Webhook struct {
@@ -14,6 +16,7 @@ type Webhook struct {
 }
 
 // SendMessage Function to send message
+//
 //goland:noinspection GoUnhandledErrorResult
 func (t *Webhook) sendMessage(s string) error {
 	data := []byte(fmt.Sprintf(`{"chat_id":%s, "text":"%s"}`, t.ChatID, s))
@@ -50,8 +53,9 @@ func sendMsgtoTelegram(msg string) error {
 		} else {
 			fmt.Printf("send tg: %s \n", msg)
 		}
+		return nil
 	}
-	return nil
+	return xerrors.Errorf("env TELEGRAM_TOKEN is empty")
 }
 
 func SendMessage(msg string, is_send bool) error {

@@ -5,6 +5,7 @@ import (
 	"os"
 
 	"github.com/wanghuiyt/ding"
+	"golang.org/x/xerrors"
 )
 
 func sendMsgtoDingTalk(msg string, is_all bool) error {
@@ -24,8 +25,9 @@ func sendMsgtoDingTalk(msg string, is_all bool) error {
 		} else {
 			fmt.Printf("send dt: %s \n", msg)
 		}
+		return nil
 	}
-	return nil
+	return xerrors.Errorf("env DINGTALK_TOKEN is empty")
 }
 
 func SendMessage(msg string, is_send bool, is_all bool) error {

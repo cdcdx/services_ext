@@ -17,6 +17,8 @@ github.com/stretchr/testify v1.3.0/go.mod h1:M5WIy9Dh21IEIfnGCwXGc5bZfKNJtfHm1UV
 github.com/stretchr/testify v1.7.0/go.mod h1:6Fq8oRcR53rry900zMqJjRRixrwX3KX962/h/Wwjteg=
 github.com/wanghuiyt/ding v0.0.1 h1:PfP1LpfbmfL+EtE4LiVqn0GrMiqEEz1bVV8g+j5WZwI=
 github.com/wanghuiyt/ding v0.0.1/go.mod h1:T1vPz74YMmGCBVKZzVsen/YAYRZ2bvBYXldUyD7Y4vc=
+github.com/wxpusher/wxpusher-sdk-go v1.0.3 h1:KMI7yYhPps5AbiI5X2d24v0l+D/0Kzm4iiCyWBlWSKE=
+github.com/wxpusher/wxpusher-sdk-go v1.0.3/go.mod h1:OfMYzFcCUNECO0ycmjCUciKD1PG67LBWeMC9B1KtBnE=
 github.com/yuin/goldmark v1.3.5/go.mod h1:mwnBkeHKe2W/ZEtQ+71ViKU8L12m81fl3OWwC1Zlc8k=
 go.uber.org/atomic v1.7.0 h1:ADUqmZGgLDDfbSL9ZmPxKTybcoEYHgpYfELNoN+7hsw=
 go.uber.org/atomic v1.7.0/go.mod h1:fEN4uk6kAWBTFdckzkM89CLk9XfWZrxpCo0nPH17wJc=

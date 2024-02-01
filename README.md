@@ -1,22 +1,7 @@
 # services_ext
 
-## drop PageCache service
-from https://github.com/etcd-io/etcd/blob/main/tests/functional/agent/utils.go
-```golang
-import "github.com/cdcdx/services_ext/mem"
-func xxx {
-	...
-	# DropPageCache
-	err := mem.DropPageCache()
-	if err != nil {
-		fmt.Println(err)
-	}
-	...
-}
-```
-
 ## ntp time service
-from https://github.com/etcd-io/dbtester/tree/master/pkg/ntp
+# from https://github.com/etcd-io/dbtester/tree/master/pkg/ntp
 ```golang
 import "github.com/cdcdx/services_ext/ntp"
 func xxx {
@@ -31,6 +16,21 @@ func xxx {
 }
 ```
 
+## drop PageCache service
+# from https://github.com/etcd-io/etcd/blob/main/tests/functional/agent/utils.go
+```golang
+import "github.com/cdcdx/services_ext/mem"
+func xxx {
+	...
+	# DropPageCache
+	err := mem.DropPageCache()
+	if err != nil {
+		fmt.Println(err)
+	}
+	...
+}
+```
+
 ## Send message to DingTalk
 ```golang
 import "github.com/cdcdx/services_ext/dingtalk"
@@ -41,6 +41,23 @@ func xxx {
 	os.Setenv("DINGTALK_SECRET", "SECxxxxxxxxxxx")
 	
 	err := dingtalk.SendMessage("alarm - msg", true, true)
+	if err != nil {
+		fmt.Println(err)
+	}
+	...
+}
+```
+
+## Send message to WxPusher
+```golang
+import "github.com/cdcdx/services_ext/wxpusher"
+func xxx {
+	...
+	# WxPusher
+	os.Setenv("WXPUSHER_TOKEN", "AT_xxxxxxxxxxx")
+	os.Setenv("WXPUSHER_UID", "UID_xxxxxxxxxxx")
+	
+	err := wxpusher.SendMessage("alarm - msg", true)
 	if err != nil {
 		fmt.Println(err)
 	}

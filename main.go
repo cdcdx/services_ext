@@ -9,6 +9,7 @@ import (
 	"github.com/cdcdx/services_ext/mem"
 	"github.com/cdcdx/services_ext/ntp"
 	"github.com/cdcdx/services_ext/telegram"
+	"github.com/cdcdx/services_ext/wxpusher"
 )
 
 func main() {
@@ -16,42 +17,49 @@ func main() {
 		fmt.Println("args:", i, v)
 	}
 
-	fmt.Println("\n sync pagecache")
-	// sync pagecache
-	err1 := mem.DropPageCache()
-	if err1 != nil {
-		fmt.Println(err1)
-	}
-
-	fmt.Println("\n sync ntptime")
 	// sync ntptime
-	out2, err2 := ntp.DefaultSync()
-	if err2 != nil {
-		fmt.Println(err2)
+	fmt.Println("\n sync ntptime")
+	out, err := ntp.DefaultSync()
+	if err != nil {
+		fmt.Println(err)
 	}
-	fmt.Println(out2)
+	fmt.Println(out)
 
-	fmt.Println("\n send dingtalk")
+	// sync pagecache
+	fmt.Println("\n sync pagecache")
+	err = mem.DropPageCache()
+	if err != nil {
+		fmt.Println(err)
+	}
+
 	// send dingtalk
-	err3 := dingtalk.SendMessage("alarm - msg", true, false)
-	if err3 != nil {
-		fmt.Println(err3)
+	fmt.Println("\n send dingtalk")
+	err = dingtalk.SendMessage("alarm - msg", true, false)
+	if err != nil {
+		fmt.Println(err)
 	}
 
-	fmt.Println("\n send telegram")
+	// send wxpusher
+	fmt.Println("\n send wxpusher")
+	err = wxpusher.SendMessage("alarm - msg", true)
+	if err != nil {
+		fmt.Println(err)
+	}
+
 	// send telegram
-	err4 := telegram.SendMessage("alarm - msg", true)
-	if err4 != nil {
-		fmt.Println(err4)
+	fmt.Println("\n send telegram")
+	err = telegram.SendMessage("alarm - msg", true)
+	if err != nil {
+		fmt.Println(err)
 	}
 
-	fmt.Println("\n send mail")
 	// send mail
+	fmt.Println("\n send mail")
 	sendTo := make([]string, 0)
 	sendTo = append(sendTo, "cdcdx888@gmail.com")
-	err5 := mail.SendMessage(sendTo, "alarm", "msg", true)
-	if err5 != nil {
-		fmt.Println(err5)
+	err = mail.SendMessage(sendTo, "alarm", "msg", true)
+	if err != nil {
+		fmt.Println(err)
 	}
 
 }
