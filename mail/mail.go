@@ -62,9 +62,20 @@ func sendMail(to []string, title string, context string) error {
 }
 
 func SendMessage(to []string, title string, context string, is_send bool) error {
-	if is_send && (len(to) > 0) {
-		// Telegram
-		return sendMail(to, title, context)
+	if is_send {
+		if len(to) > 0 {
+			// Mail
+			return sendMail(to, title, context)
+		} else {
+			if os.Getenv("SMTP_TO") != "" {
+				to_str := os.Getenv("SMTP_TO")
+				to_list := strings.Split(to_str, ",")
+				// Mail
+				return sendMail(to_list, title, context)
+			} else {
+				log.Infof("env SMTP_TO is empty")
+			}
+		}
 	}
 	return nil
 }

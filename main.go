@@ -55,9 +55,7 @@ func main() {
 
 	// send mail
 	fmt.Println("\n send mail")
-	sendTo := make([]string, 0)
-	sendTo = append(sendTo, "cdcdx888@gmail.com")
-	err = mail.SendMessage(sendTo, "alarm", "msg", true)
+	err = mail.SendMessage(nil, "alarm", "msg", true)
 	if err != nil {
 		fmt.Println(err)
 	}

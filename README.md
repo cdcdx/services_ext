@@ -93,8 +93,16 @@ func xxx {
 	os.Setenv("SMTP_USERNAME", "username@163.com")
 	os.Setenv("SMTP_PASSWORD", "passwd")
 	
+	## 1
+	os.Setenv("SMTP_TO", "to_1@163.com,to_2@163.com")
+	err := mail.SendMessage(nil, "alarm", "msg", true)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	## 2
 	sendTo := make([]string, 0)
-	sendTo = append(sendTo, "cdcdx888@gmail.com")
+	sendTo = append(sendTo, "to@163.com")
 	err := mail.SendMessage(sendTo, "alarm", "msg", true)
 	if err != nil {
 		fmt.Println(err)
